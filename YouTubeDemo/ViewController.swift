@@ -10,10 +10,21 @@ import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
 
+  let menuBar: AYMenuBar = {
+    let menuBar = AYMenuBar()
+        menuBar.translatesAutoresizingMaskIntoConstraints = false
+    return menuBar
+  }()
+  
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationItem.title = "Home"
+    navigationController?.navigationBar.isTranslucent = false
     collectionView?.backgroundColor = UIColor.white
+    
+    setUpMenuBar()
     
     collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: "cellId")
   }
@@ -36,7 +47,16 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     return 0
   }
+  
+  // MARK: Private functions
+  
+  private func setUpMenuBar() {
+    view.addSubview(menuBar)
+    view.addConstraintsStringWithFormat(format: "H:|[v0]|", views: menuBar)
+    view.addConstraintsStringWithFormat(format: "V:|[v0(50)]", views: menuBar)
+  }
 }
+
 
 
 

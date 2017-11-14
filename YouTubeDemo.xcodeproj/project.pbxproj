@@ -16,6 +16,7 @@
 		245A17211FBA172E007485F4 /* YouTubeDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245A17201FBA172E007485F4 /* YouTubeDemoUITests.swift */; };
 		245A172F1FBA2F03007485F4 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245A172E1FBA2F03007485F4 /* UIView+AutoLayout.swift */; };
 		245A17311FBA2F9B007485F4 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245A17301FBA2F9B007485F4 /* VideoCell.swift */; };
+		245A17351FBB620E007485F4 /* AYMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245A17341FBB620E007485F4 /* AYMenuBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		245A17221FBA172E007485F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		245A172E1FBA2F03007485F4 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		245A17301FBA2F9B007485F4 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
+		245A17341FBB620E007485F4 /* AYMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AYMenuBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				245A17001FBA172E007485F4 /* AppDelegate.swift */,
+				245A17341FBB620E007485F4 /* AYMenuBar.swift */,
 				245A17021FBA172E007485F4 /* ViewController.swift */,
 				245A17041FBA172E007485F4 /* Main.storyboard */,
 				245A17071FBA172E007485F4 /* Assets.xcassets */,
@@ -282,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				245A17031FBA172E007485F4 /* ViewController.swift in Sources */,
+				245A17351FBB620E007485F4 /* AYMenuBar.swift in Sources */,
 				245A17311FBA2F9B007485F4 /* VideoCell.swift in Sources */,
 				245A172F1FBA2F03007485F4 /* UIView+AutoLayout.swift in Sources */,
 				245A17011FBA172E007485F4 /* AppDelegate.swift in Sources */,
