@@ -26,7 +26,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     setUpMenuBar()
     
-    collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: "cellId")
+    collectionView?.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: Constants.CellId.VideoCellId)
+    collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+    collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
   }
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -35,7 +37,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
-    let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
+    let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.VideoCellId, for: indexPath)
     
     return cell
   }

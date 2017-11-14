@@ -1,5 +1,5 @@
 //
-//  UIView+AutoLayout.swift
+//  Extensions.swift
 //  YouTubeDemo
 //
 //  Created by Anurag Yadav on 11/13/17.
@@ -21,5 +21,16 @@ extension UIView {
     }
     addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewDictionary))
   }
+}
+
+
+extension UIColor {
   
+ static let customStatusBarColor: UIColor = {
+    return UIColor(red: 194/255, green: 32/255, blue: 31/255, alpha: 1)
+  }()
+  
+ static let customMenuBarColor: UIColor = {
+    return UIColor(red: 230/255, green: 32/255, blue: 31/255, alpha: 1)
+  }()
 }

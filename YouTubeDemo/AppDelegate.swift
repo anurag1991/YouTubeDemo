@@ -15,16 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    
-
-    
+        
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
     
     let layout = UICollectionViewFlowLayout()
     window?.rootViewController = UINavigationController(rootViewController: HomeController(collectionViewLayout: layout))
     
-    UINavigationBar.appearance().barTintColor = UIColor(red: 230/255, green: 32/255, blue: 31/255, alpha: 1)
+    UINavigationBar.appearance().barTintColor = UIColor.customMenuBarColor
     
     //*** Removeblack line between navigation bar and custom menu bar ****
     UINavigationBar.appearance().shadowImage = UIImage()
@@ -33,10 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //****Setup a custom status bar ****//
     
     let statusBarBackground = UIView()
-    statusBarBackground.backgroundColor=UIColor(red: 194/255, green: 32/255, blue: 31/255, alpha: 1)
+    statusBarBackground.backgroundColor = UIColor.customStatusBarColor
+    
     window?.addSubview(statusBarBackground)
-    window?.addConstraintsStringWithFormat(format: "H:|[v0]|", views: statusBarBackground)
-    window?.addConstraintsStringWithFormat(format: "V:|[v0(20)]", views: statusBarBackground)
+    window?.addConstraintsStringWithFormat(format: Constants.AutoLayoutFormatString.StatusBarLayoutString.StatusBarHorizontalAxisFixed, views: statusBarBackground)
+    window?.addConstraintsStringWithFormat(format: Constants.AutoLayoutFormatString.StatusBarLayoutString.StatusBarVerticalAxisFixedWithWidth, views: statusBarBackground)
     return true
   }
 
