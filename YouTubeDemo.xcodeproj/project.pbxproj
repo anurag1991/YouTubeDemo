@@ -115,7 +115,7 @@
 		245A16FF1FBA172D007485F4 /* YouTubeDemo */ = {
 			isa = PBXGroup;
 			children = (
-				245A17001FBA172E007485F4 /* AppDelegate.swift */,
+				24F204F11FBCD48500E4FB0B /* AppDelegate */,
 				24F204ED1FBCD42800E4FB0B /* Model */,
 				24F204EE1FBCD42800E4FB0B /* ViewModel */,
 				246B73F11FBB87B100744BDF /* Views */,
@@ -215,6 +215,14 @@
 				246B74031FBBB1EE00744BDF /* NetworkManager.swift */,
 			);
 			path = "Network Manager";
+			sourceTree = "<group>";
+		};
+		24F204F11FBCD48500E4FB0B /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				245A17001FBA172E007485F4 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
