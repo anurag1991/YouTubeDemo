@@ -10,32 +10,43 @@ import Foundation
 import UIKit
 
 class VideoCollectionViewCell: BaseCollectionViewCell {
+  
+  var video: Videos? {
+    
+    didSet {
+     // imageView.image = UIImage(named: video?.thumbnailImageName ?? "")
+     // titleLabel.text = video?.videoTitle
+     // subtitleTextView.text = video?.videoSubTitle
+    }
+  }
+  
+  
   // UI elements
   let imageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.image = UIImage(named: "dsgidisgd.png")
-    imageView.backgroundColor = UIColor.blue
+    imageView.contentMode = .scaleAspectFill
+    imageView.clipsToBounds = true
     return imageView
   }()
   
   let titleLabel: UILabel = {
     let label = UILabel()
-        label.backgroundColor = UIColor.red
         label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
   
   let subtitleTextView: UITextView = {
     let subtitleTextView = UITextView()
-    subtitleTextView.backgroundColor = UIColor.purple
+    subtitleTextView.textColor = UIColor.lightGray
     subtitleTextView.translatesAutoresizingMaskIntoConstraints = false
+    subtitleTextView.isEditable = false
+    subtitleTextView.textContainerInset = UIEdgeInsetsMake(0, -4, 0, 0)
     return subtitleTextView
   }()
   
   let userProfileImageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.image = UIImage(named: "dsgidisgd.png")
-    imageView.backgroundColor = UIColor.green
+    imageView.image = UIImage(named: "profile_picture")
     return imageView
   }()
   
@@ -86,7 +97,7 @@ class VideoCollectionViewCell: BaseCollectionViewCell {
     addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .right, relatedBy: .equal, toItem: imageView, attribute: .right, multiplier: 1, constant: 0))
     
     //** Height constraint
-    addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20))
+    addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 30))
 
   }
 }

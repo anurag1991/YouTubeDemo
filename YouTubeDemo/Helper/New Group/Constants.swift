@@ -23,4 +23,8 @@ struct Constants {
       static let StatusBarVerticalAxisFixedWithWidth = "V:|[v0(20)]"
     }
   }
+  
+  struct URL {
+    static let YouTubeDataURL = "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json"
+  }
 }

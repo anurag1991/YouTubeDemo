@@ -26,8 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //*** Removeblack line between navigation bar and custom menu bar ****
     UINavigationBar.appearance().shadowImage = UIImage()
-    UINavigationBar.appearance().setBackgroundImage(UIImage(),
-                                                    for: .default)
+    UINavigationBar.appearance().setBackgroundImage(UIImage(),for: .default)
     //****Setup a custom status bar ****//
     
     let statusBarBackground = UIView()
