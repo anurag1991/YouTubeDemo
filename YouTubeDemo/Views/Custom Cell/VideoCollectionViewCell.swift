@@ -14,16 +14,16 @@ class VideoCollectionViewCell: BaseCollectionViewCell {
   var video: Videos? {
     
     didSet {
-     // imageView.image = UIImage(named: video?.thumbnailImageName ?? "")
-     // titleLabel.text = video?.videoTitle
-     // subtitleTextView.text = video?.videoSubTitle
+      thumbnailImageView.loadImageWithUrlString(urlString: video?.thumbnailImageName ?? "")
+      titleLabel.text = video?.videoTitle
+      userProfileImageView.loadImageWithUrlString(urlString: video?.channel.profileImageName ?? "")
+      subtitleTextView.text = "EminemVEVO 20B views 2 week ago"
     }
   }
-  
-  
+
   // UI elements
-  let imageView: UIImageView = {
-    let imageView = UIImageView()
+  let thumbnailImageView: CustomImageView = {
+    let imageView = CustomImageView()
     imageView.contentMode = .scaleAspectFill
     imageView.clipsToBounds = true
     return imageView
@@ -44,9 +44,11 @@ class VideoCollectionViewCell: BaseCollectionViewCell {
     return subtitleTextView
   }()
   
-  let userProfileImageView: UIImageView = {
-    let imageView = UIImageView()
-    imageView.image = UIImage(named: "profile_picture")
+  let userProfileImageView: CustomImageView = {
+    let imageView = CustomImageView()
+    imageView.contentMode = .scaleAspectFill
+    imageView.layer.cornerRadius = 22
+    imageView.layer.masksToBounds = true
     return imageView
   }()
   
@@ -58,7 +60,7 @@ class VideoCollectionViewCell: BaseCollectionViewCell {
   
   override func setUpViews()  {
     super.setUpViews()
-    addSubview(imageView)
+    addSubview(thumbnailImageView)
     addSubview(sepratorView)
     addSubview(userProfileImageView)
     addSubview(titleLabel)
@@ -69,20 +71,20 @@ class VideoCollectionViewCell: BaseCollectionViewCell {
   func setUpLayoutConstraintForSubViews() {
     //* Setting layout constraints for Sub Views
     
-    addConstraintsStringWithFormat(format: "H:|-16-[v0]-16-|", views: imageView)
+    addConstraintsStringWithFormat(format: "H:|-16-[v0]-16-|", views: thumbnailImageView)
     addConstraintsStringWithFormat(format: "H:|-16-[v0(44)]", views: userProfileImageView)
     
     //* Vertical constraint
-    addConstraintsStringWithFormat(format: "V:|-16-[v0]-8-[v1(44)]-16-[v2(1)]|", views: imageView,userProfileImageView,sepratorView)
+    addConstraintsStringWithFormat(format: "V:|-16-[v0]-8-[v1(44)]-16-[v2(1)]|", views: thumbnailImageView,userProfileImageView,sepratorView)
     
     addConstraintsStringWithFormat(format: "H:|[v0]|", views: sepratorView)
     
     //*** Top anchor
-    addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: imageView, attribute: .bottom, multiplier: 1, constant: 8))
+    addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: thumbnailImageView, attribute: .bottom, multiplier: 1, constant: 8))
     //** left anchor
     addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .left, relatedBy: .equal, toItem: userProfileImageView, attribute: .right, multiplier: 1, constant: 8))
    //** right anchor
-    addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .right, relatedBy: .equal, toItem: imageView, attribute: .right, multiplier: 1, constant: 0))
+    addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .right, relatedBy: .equal, toItem: thumbnailImageView, attribute: .right, multiplier: 1, constant: 0))
     
     //** Height constraint
     addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20))
@@ -94,7 +96,7 @@ class VideoCollectionViewCell: BaseCollectionViewCell {
     //** left anchor
     addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .left, relatedBy: .equal, toItem: userProfileImageView, attribute: .right, multiplier: 1, constant: 8))
     //** right anchor
-    addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .right, relatedBy: .equal, toItem: imageView, attribute: .right, multiplier: 1, constant: 0))
+    addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .right, relatedBy: .equal, toItem: thumbnailImageView, attribute: .right, multiplier: 1, constant: 0))
     
     //** Height constraint
     addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 30))

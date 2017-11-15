@@ -15,7 +15,7 @@ protocol VideoViewModelDelegate {
 
 class VideoViewModel: NSObject {
   static  let viewModel =  VideoViewModel()
-  var videos :[Videos]?
+  var videosData: [Videos]?
   
    var delegate: VideoViewModelDelegate? =  nil
   
@@ -39,6 +39,7 @@ class VideoViewModel: NSObject {
         self.delegate?.didFailWith(error: error!)
         return
       }
+      self.videosData = videos
       self.delegate?.didSuccess(video: videos)
     }
   }

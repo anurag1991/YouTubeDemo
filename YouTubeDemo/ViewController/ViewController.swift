@@ -38,13 +38,14 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
   // MARK: CollectionView
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return VideoViewModel.viewModel.videos?.count ?? 0
+    print(VideoViewModel.viewModel.videosData?.count)
+    return VideoViewModel.viewModel.videosData?.count ?? 0
   }
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
     let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.VideoCellId, for: indexPath) as! VideoCollectionViewCell
-    cell.video = VideoViewModel.viewModel.videos?[indexPath.row]
+    cell.video = VideoViewModel.viewModel.videosData?[indexPath.row]
     return cell
   }
   
@@ -73,7 +74,9 @@ extension HomeController: VideoViewModelDelegate {
     print("error")
   }
   func didSuccess(video: [Videos]) {
-    print("SUCCESS")
+    DispatchQueue.main.async {
+      self.collectionView?.reloadData()
+    }
   }
 }
 

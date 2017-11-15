@@ -10,6 +10,13 @@ import UIKit
 
 class AYMenuBar: UIView {
   
+  //***** Temp image array , size of the icons aren't good ***
+  
+  let imageArray: [String] = {
+    return ["Home_1","trending_icon","Subscription-icon","Profile_icon"]
+  }()
+  
+  
   lazy var menuCollectionView: UICollectionView = {
       let collectionViewLayout = UICollectionViewFlowLayout()
     let menuCollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
@@ -51,7 +58,9 @@ extension AYMenuBar: UICollectionViewDelegate,UICollectionViewDataSource {
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.MenuCellId, for: indexPath)
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellId.MenuCellId, for: indexPath) as! MenuCollectionViewCell
+        cell.imageView.image = UIImage(named: imageArray[indexPath.item])?.withRenderingMode(.alwaysTemplate)
+        cell.tintColor = UIColor.customStatusBarColor
     
     return cell
   }
