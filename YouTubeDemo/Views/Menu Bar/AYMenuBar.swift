@@ -77,8 +77,3 @@ extension AYMenuBar: UICollectionViewDelegateFlowLayout {
     return 0
   }
 }
-
-
-
-
-

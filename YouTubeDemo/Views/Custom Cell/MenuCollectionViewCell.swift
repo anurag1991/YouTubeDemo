@@ -14,7 +14,7 @@ class MenuCollectionViewCell: BaseCollectionViewCell {
   
   var imageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.image = UIImage(named: "Home_1")?.withRenderingMode(.alwaysTemplate)
+    imageView.image = #imageLiteral(resourceName: "Home_1").withRenderingMode(.alwaysTemplate)
     imageView.tintColor = UIColor.customStatusBarColor
     return imageView
   }()
