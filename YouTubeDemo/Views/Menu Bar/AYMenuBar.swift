@@ -10,6 +10,8 @@ import UIKit
 
 class AYMenuBar: UIView {
   
+  var horizontalBarLeftAnchorConstraints: NSLayoutConstraint?
+  
   //***** Temp image array , size of the icons aren't good ***
   
   let imageArray: [String] = {
@@ -36,7 +38,9 @@ class AYMenuBar: UIView {
     
     //*** First cell selected when app launch **
     menuCollectionView.selectItem(at: NSIndexPath(row: 0, section: 0) as IndexPath, animated: false, scrollPosition:.top)
+    
     setupConstraints()
+    setupHorizontalBar()
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -48,6 +52,22 @@ class AYMenuBar: UIView {
   private func setupConstraints(){
     self.addConstraintsStringWithFormat(format: Constants.AutoLayoutFormatString.MenuCellLayoutString.MenuCellHorizontalAxisFixed, views: menuCollectionView)
     self.addConstraintsStringWithFormat(format: Constants.AutoLayoutFormatString.MenuCellLayoutString.MenuCellVerticalAxisFixed, views: menuCollectionView)
+  }
+  
+  private func setupHorizontalBar(){
+    let horizontalBar = UIView()
+    horizontalBar.backgroundColor = UIColor(white: 0.95, alpha: 1)
+    horizontalBar.translatesAutoresizingMaskIntoConstraints = false
+    self.addSubview(horizontalBar)
+    
+    //**** Set layout for horizontalbar
+    horizontalBarLeftAnchorConstraints = horizontalBar.leftAnchor.constraint(equalTo: self.leftAnchor)
+    horizontalBarLeftAnchorConstraints?.isActive = true
+    
+    horizontalBar.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+    horizontalBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/4).isActive = true
+    horizontalBar.heightAnchor.constraint(equalToConstant: 8).isActive = true
+    
   }
 }
 
@@ -65,6 +85,14 @@ extension AYMenuBar: UICollectionViewDelegate,UICollectionViewDataSource {
     return cell
   }
 
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let xAxis = CGFloat(indexPath.item) * frame.width / 4
+        horizontalBarLeftAnchorConstraints?.constant = xAxis
+    
+    UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+      self.layoutIfNeeded()
+    }, completion: nil)
+  }
 }
 
 extension AYMenuBar: UICollectionViewDelegateFlowLayout {

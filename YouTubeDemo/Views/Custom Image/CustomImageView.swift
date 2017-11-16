@@ -11,17 +11,18 @@ import UIKit
 
 class CustomImageView: UIImageView {
   
-  let imageCache = NSCache<AnyObject, AnyObject>()
+  let imageCache = NSCache<NSString, UIImage>()
   var imageUrlString: String?
     
   func loadImageWithUrlString(urlString: String)  {
     
     imageUrlString = urlString
     
-    if let imageFromCache = imageFromCache(imageUrl: urlString){
+    if let imageFromCache = imageCache.object(forKey: urlString as NSString){
       self.image = imageFromCache
       return
     }
+    
     URLSession.shared.dataTask(with: URL(string: urlString)!) { (data, response, error) in
       if error != nil {
         return
@@ -29,7 +30,7 @@ class CustomImageView: UIImageView {
       
       DispatchQueue.main.async {
         let imageToCache = UIImage(data: data!)
-        self.imageCache.setObject(imageToCache!, forKey: urlString as AnyObject)
+        self.imageCache.setObject(imageToCache!, forKey: urlString as NSString)
         
         guard self.imageUrlString == urlString else {
          return
@@ -37,13 +38,5 @@ class CustomImageView: UIImageView {
           self.image = imageToCache
       }
     }.resume()
-  }
-  
-  private func imageFromCache(imageUrl: String) -> UIImage? {
-    
-    guard let imageFromCache = imageCache.object(forKey: imageUrl as AnyObject) as? UIImage else {
-      return nil
-    }
-    return imageFromCache
   }
 }
