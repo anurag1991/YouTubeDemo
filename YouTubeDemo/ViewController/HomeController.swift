@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeController.swift
 //  YouTubeDemo
 //
 //  Created by Anurag Yadav on 11/13/17.
@@ -68,9 +68,21 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
   // MARK: Private functions
   
   private func setUpMenuBar() {
+    
+    navigationController?.hidesBarsOnSwipe = true
+    
+    let redView = UIView()
+    redView.backgroundColor = UIColor.customMenuBarColor
+    view.addSubview(redView)
+    view.addConstraintsStringWithFormat(format: "H:|[v0]|", views: redView)
+    view.addConstraintsStringWithFormat(format: "V:[v0(50)]", views: redView)
+
+    
     view.addSubview(menuBar)
     view.addConstraintsStringWithFormat(format: "H:|[v0]|", views: menuBar)
-    view.addConstraintsStringWithFormat(format: "V:|[v0(50)]", views: menuBar)
+    view.addConstraintsStringWithFormat(format: "V:[v0(50)]", views: menuBar)
+    
+    menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
   }
   
   private func setUpNavBarButton() {
