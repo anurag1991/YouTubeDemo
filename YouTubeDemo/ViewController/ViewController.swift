@@ -10,6 +10,10 @@ import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
   
+  let settingLauncher = SettingsLaunchScreen()
+  let titles = ["Home", "Trending", "Subscriptions", "Account"]
+
+  
   let menuBar: AYMenuBar = {
     let menuBar = AYMenuBar()
         menuBar.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +78,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     let searchBarButton = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(tapSearch))
     
     let moreImage = #imageLiteral(resourceName: "more_icon").withRenderingMode(.alwaysOriginal)
-    let moreButton = UIBarButtonItem(image: moreImage, style: .plain, target: self, action: #selector(tapMore))
+    let moreButton = UIBarButtonItem(image: moreImage, style: .plain, target: self, action: #selector(handleMore))
     navigationItem.rightBarButtonItems = [moreButton,searchBarButton]
     
   }
@@ -83,8 +87,41 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     print("tapSearch")
   }
   
-  @objc private func tapMore(){
-    print("tapMore")
+  lazy var settingsLauncher: SettingsLaunchScreen = {
+    let launcher = SettingsLaunchScreen()
+    launcher.homeController = self
+    return launcher
+  }()
+  
+ @objc func handleMore() {
+    //show menu
+    settingsLauncher.showSettings()
+  }
+  
+  func showControllerForSetting(_ setting: Setting) {
+    let dummySettingsViewController = UIViewController()
+    dummySettingsViewController.view.backgroundColor = UIColor.white
+    dummySettingsViewController.navigationItem.title = setting.name.rawValue
+    navigationController?.navigationBar.tintColor = UIColor.white
+    navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+    navigationController?.pushViewController(dummySettingsViewController, animated: true)
+  }
+  
+  func handleSearch() {
+    scrollToMenuIndex(2)
+  }
+  
+  func scrollToMenuIndex(_ menuIndex: Int) {
+    let indexPath = IndexPath(item: menuIndex, section: 0)
+    collectionView?.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition(), animated: true)
+    
+    setTitleForIndex(menuIndex)
+  }
+  
+  fileprivate func setTitleForIndex(_ index: Int) {
+    if let titleLabel = navigationItem.titleView as? UILabel {
+      titleLabel.text = "  \(titles[index])"
+    }
   }
 }
 
