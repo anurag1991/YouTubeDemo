@@ -10,9 +10,12 @@ import Foundation
 
 struct Constants {
   struct CellId {
-   static let MenuCellId = "MenuCellId"
-   static let VideoCellId = "VideoCellId"
+   static let MenuCellId = "menuCellId"
+   static let VideoCellId = "videoCellId"
+   static let TrendingCellId = "trendingCellId"
+   static let SubscriptionCellId  = "subscriptionsCellId"
   }
+  
   struct AutoLayoutFormatString {
     struct MenuCellLayoutString {
       static let MenuCellHorizontalAxisFixed = "H:|[v0]|"
@@ -25,6 +28,9 @@ struct Constants {
   }
   
   struct URL {
-    static let YouTubeDataURL = "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json"
+    static let YouTubeDataBaseURL = "https://s3-us-west-2.amazonaws.com/youtubeassets"
+    static let HomeFeedURL = "/home_num_likes.json"
+    static let TrendingURL = "/trending.json"
+    static let SubscriptionsURL = "/subscriptions.json"
   }
 }

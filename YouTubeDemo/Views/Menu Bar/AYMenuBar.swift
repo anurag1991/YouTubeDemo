@@ -14,6 +14,8 @@ class AYMenuBar: UIView {
   
   //***** Temp image array , size of the icons aren't good ***
   
+  var homeController: HomeController?
+  
   let imageArray: [String] = {
     return ["Home_1","trending_icon","Subscription-icon","Profile_icon"]
   }()
@@ -32,7 +34,7 @@ class AYMenuBar: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    
+
     menuCollectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: Constants.CellId.MenuCellId)
     self.addSubview(menuCollectionView)
     
@@ -86,12 +88,7 @@ extension AYMenuBar: UICollectionViewDelegate,UICollectionViewDataSource {
   }
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    let xAxis = CGFloat(indexPath.item) * frame.width / 4
-        horizontalBarLeftAnchorConstraints?.constant = xAxis
-    
-    UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-      self.layoutIfNeeded()
-    }, completion: nil)
+    homeController?.scrollToMenuIndex(indexPath.item)
   }
 }
 

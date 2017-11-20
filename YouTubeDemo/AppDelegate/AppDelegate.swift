@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.makeKeyAndVisible()
     
     let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
     window?.rootViewController = UINavigationController(rootViewController: HomeController(collectionViewLayout: layout))
     
     UINavigationBar.appearance().barTintColor = UIColor.customMenuBarColor

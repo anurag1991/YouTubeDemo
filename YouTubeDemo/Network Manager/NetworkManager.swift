@@ -14,7 +14,6 @@ class NetworkManager: NSObject {
   
   typealias CompletionHandler = (_ error: Error?, _ resources: [Videos]) -> Void
   
-
   func downloadDataWithURL(url: String, completion: @escaping CompletionHandler)  {
    
     URLSession.shared.dataTask(with: URL(string: url)!) { (data, reposne, error) in
